@@ -21,6 +21,12 @@ export abstract class ICubismModelSetting {
   public abstract getModelFileName(): string;
 
   /**
+   * Get the name of the cdi3 (display info) file
+   * @return Name of the cdi3 (display info) file
+   */
+  public abstract getDisplayInfoFileName(): string
+
+  /**
    * モデルが使用するテクスチャの数を取得する
    * テクスチャの数
    */

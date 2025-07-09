@@ -497,7 +497,7 @@ export class CubismUserModel {
   protected _moc: CubismMoc; // Mocデータ
   protected _model: CubismModel; // Modelインスタンス
 
-  protected _displayInfo: CubismDisplayInfo; // display info from cdi3.json mapping parameter & part names to ids
+  protected _displayInfo: CubismDisplayInfo; // display info from cdi3.json mapping parameter & part names to ids (CubismIdHandles)
   protected _motionManager: CubismMotionManager; // モーション管理
   protected _expressionManager: CubismExpressionMotionManager; // 表情管理
   protected _eyeBlink: CubismEyeBlink; // 自動まばたき

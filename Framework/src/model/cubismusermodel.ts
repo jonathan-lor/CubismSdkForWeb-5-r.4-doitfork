@@ -18,6 +18,7 @@ import {
   BeganMotionCallback,
   FinishedMotionCallback
 } from '../motion/acubismmotion';
+import { CubismDisplayInfo } from './cubismdisplayinfo';
 import { CubismExpressionMotion } from '../motion/cubismexpressionmotion';
 import { CubismExpressionMotionManager } from '../motion/cubismexpressionmotionmanager';
 import { CubismMotion } from '../motion/cubismmotion';
@@ -214,6 +215,20 @@ export class CubismUserModel {
     }
 
     return motion;
+  }
+
+  /**
+   * ポーズデータの読み込み
+   * @param buffer array buffer from loading .cdi3.json
+   * @param size size of the array buffer
+   */
+  public loadDisplayInfo(buffer: ArrayBuffer, size: number): void {
+    if(buffer == null || size == 0) {
+      CubismLogError('Failed to loadDisplayInfo()');
+      return;
+    }
+    this._displayInfo = CubismDisplayInfo.create(buffer, size);
+    // return 1;
   }
 
   /**
@@ -482,6 +497,7 @@ export class CubismUserModel {
   protected _moc: CubismMoc; // Mocデータ
   protected _model: CubismModel; // Modelインスタンス
 
+  protected _displayInfo: CubismDisplayInfo; // display info from cdi3.json mapping parameter & part names to ids
   protected _motionManager: CubismMotionManager; // モーション管理
   protected _expressionManager: CubismExpressionMotionManager; // 表情管理
   protected _eyeBlink: CubismEyeBlink; // 自動まばたき

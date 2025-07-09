@@ -39,10 +39,7 @@ export class CubismModelSettingJson extends ICubismModelSetting {
   public constructor(buffer: ArrayBuffer, size: number) {
     super();
 
-    // this is where the error is happening when loading axlothl
-    console.log("about to call CubismJson.create() with buffer and size", buffer, size);
     this._json = CubismJson.create(buffer, size);
-    console.log("hello from cubismmodelsettingjson 2", this._json);
 
     if (this.getJson()) {
       this._jsonValue = new csmVector<Value>();

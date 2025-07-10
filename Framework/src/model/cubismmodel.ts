@@ -1181,9 +1181,9 @@ export class CubismModel {
   }
 
   /**
-   * パラメータのインデックスの取得
-   * @param パラメータID
-   * @return パラメータのインデックス
+   * Gets the index of a parameter
+   * @param parameterId Parameter ID
+   * @return index of the parameter
    */
   public getParameterIndex(parameterId: CubismIdHandle): number {
     let parameterIndex: number;
@@ -1197,14 +1197,13 @@ export class CubismModel {
       return parameterIndex;
     }
 
-    // モデルに存在していない場合、非存在パラメータIDリスト内を検索し、そのインデックスを返す
+     // If the parameter does not exist in the model, search the non-existent parameter ID list and return its index
     if (this._notExistParameterId.isExist(parameterId)) {
       return this._notExistParameterId.getValue(parameterId);
     }
 
-    // 非存在パラメータIDリストにない場合新しく要素を追加する
-    parameterIndex =
-      this._model.parameters.count + this._notExistParameterId.getSize();
+    // If not found in the non-existent parameter ID list, add it as a new entry
+    parameterIndex = this._model.parameters.count + this._notExistParameterId.getSize();
 
     this._notExistParameterId.setValue(parameterId, parameterIndex);
     this._notExistParameterValues.appendKey(parameterIndex);
@@ -2090,11 +2089,11 @@ export class CubismModel {
     this._model = null;
   }
 
-  private _notExistPartOpacities: csmMap<number, number>; // 存在していないパーツの不透明度のリスト
-  private _notExistPartId: csmMap<CubismIdHandle, number>; // 存在していないパーツIDのリスト
+  private _notExistPartOpacities: csmMap<number, number>; // list of opacities for non existent parts
+  private _notExistPartId: csmMap<CubismIdHandle, number>; // list of non existent part ids
 
-  private _notExistParameterValues: csmMap<number, number>; // 存在していないパラメータの値のリスト
-  private _notExistParameterId: csmMap<CubismIdHandle, number>; // 存在していないパラメータIDのリスト
+  private _notExistParameterValues: csmMap<number, number>; // list of values for non existent parameters
+  private _notExistParameterId: csmMap<CubismIdHandle, number>; // list of non existent parameter ids
 
   private _savedParameters: csmVector<number>; // 保存されたパラメータ
 

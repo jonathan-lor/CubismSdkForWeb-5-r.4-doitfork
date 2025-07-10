@@ -218,7 +218,7 @@ export class CubismUserModel {
   }
 
   /**
-   * ポーズデータの読み込み
+   * Loading display info
    * @param buffer array buffer from loading .cdi3.json
    * @param size size of the array buffer
    */
@@ -250,7 +250,7 @@ export class CubismUserModel {
   }
 
   /**
-   * ポーズデータの読み込み
+   * loading pose data
    * @param buffer pose3.jsonが読み込まれているバッファ
    * @param size バッファのサイズ
    */

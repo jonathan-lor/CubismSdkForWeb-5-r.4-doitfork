@@ -511,8 +511,8 @@ export class CubismUserModel {
   protected _initialized: boolean; // 初期化されたかどうか
   protected _updating: boolean; // 更新されたかどうか
   protected _opacity: number; // 不透明度
-  protected _lipsync: boolean; // リップシンクするかどうか
-  protected _lastLipSyncValue: number; // 最後のリップシンクの制御地
+  protected _lipsync: boolean; // whether or not to lip sync
+  protected _lastLipSyncValue: number; // final lip sync control
   protected _dragX: number; // マウスドラッグのX位置
   protected _dragY: number; // マウスドラッグのY位置
   protected _accelerationX: number; // X軸方向の加速度

@@ -250,7 +250,7 @@ export class CubismJson {
    */
   public static create(buffer: ArrayBuffer, size: number) {
     const json = new CubismJson();
-    console.log("hello from CubismJson.create()");
+    // console.log("hello from CubismJson.create()");
     // error happening here
     const succeeded: boolean = json.parseBytes(
       buffer,
@@ -319,7 +319,7 @@ export class CubismJson {
     size: number,
     parseCallback?: parseJsonObject
   ): boolean {
-    console.log("hello from CubismJson.parseBytes()");
+    // console.log("hello from CubismJson.parseBytes()");
     const endPos: number[] = new Array<number>(1); // 参照渡しにするため配列
     const decodeBuffer: string = CubismJson.arrayBufferToString(buffer);
      // console.log("hello from CubismJson.parseBytes() 2 decodeBuffer: ", decodeBuffer);

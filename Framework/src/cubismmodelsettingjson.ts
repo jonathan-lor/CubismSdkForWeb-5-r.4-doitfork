@@ -436,7 +436,7 @@ export class CubismModelSettingJson extends ICubismModelSetting {
    * @return false レイアウト情報が存在しない
    */
   public getLayoutMap(outLayoutMap: csmMap<string, number>): boolean {
-    // 存在しない要素にアクセスするとエラーになるためValueがnullの場合はnullを代入する
+    // Since accessing a non-existent element will result in an error, if Value is null, assign null
     const map: csmMap<string, Value> = this.getJson()
       .getRoot()
       .getValueByString(this.layout)

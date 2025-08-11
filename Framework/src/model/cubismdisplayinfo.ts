@@ -17,7 +17,7 @@ enum DisplayInfoFields {
 //CubismFrameworkIdManager.getId only accepts the parameter id. so we do still need mapping of name to id
 // what about part
 
-// may refactor to use cubism map
+// need to edit model to support getting min and max parameter values from partname
 export class CubismDisplayInfo {
 
     // edge case here is if parameter/part name is duplicated between part and parameter

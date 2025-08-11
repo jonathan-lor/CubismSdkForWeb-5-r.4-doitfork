@@ -21,6 +21,7 @@ export enum FrequestNode {
   FrequestNode_Physics, // getRoot().getValueByString(FileReferences).getValueByString(Physics)
   FrequestNode_Pose, // getRoot().getValueByString(FileReferences).getValueByString(Pose)
   FrequestNode_DisplayInfo, // getRoot().getValueByString(FileReferences).getValueByString(DisplayInfo)
+  FrequestNode_ModelActions, // getRoot().getValueByString(FileReferences).getValueByString(ModelActions)
   FrequestNode_HitAreas // getRoot().getValueByString(HitAreas)
 }
 
@@ -44,7 +45,7 @@ export class CubismModelSettingJson extends ICubismModelSetting {
     if (this.getJson()) {
       this._jsonValue = new csmVector<Value>();
 
-      // 順番はenum FrequestNodeと一致させる
+      // The order should match the enum FrequestNode
       this._jsonValue.pushBack(
         this.getJson().getRoot().getValueByString(this.groups)
       );
@@ -91,6 +92,12 @@ export class CubismModelSettingJson extends ICubismModelSetting {
           .getValueByString(this.displayInfo)
       );
       this._jsonValue.pushBack(
+        this.getJson()
+          .getRoot()
+          .getValueByString(this.fileReferences)
+          .getValueByString(this.modelActions)
+      );
+      this._jsonValue.pushBack(
         this.getJson().getRoot().getValueByString(this.hitAreas)
       );
     }
@@ -134,6 +141,17 @@ export class CubismModelSettingJson extends ICubismModelSetting {
       return '';
     }
     return this._jsonValue.at(FrequestNode.FrequestNode_DisplayInfo).getRawString();
+  }
+
+  /**
+   * Get the name of the cdi3 (display info) file
+   * @return Name of the cdi3 (display info) file
+   */
+  public getModelActionFileName(): string {
+    if (!this.isExistModelActionFile()) {
+      return '';
+    }
+    return this._jsonValue.at(FrequestNode.FrequestNode_ModelActions).getRawString();
   }
 
 
@@ -605,6 +623,16 @@ export class CubismModelSettingJson extends ICubismModelSetting {
   }
 
   /**
+   * Check if the cdi3 (display info) file key exists
+   * @return true if it exists
+   * @return false if it does not exist
+   */
+  protected isExistModelActionFile(): boolean {
+    const node: Value = this._jsonValue.at(FrequestNode.FrequestNode_ModelActions);
+    return !node.isNull() && !node.isError();
+  }
+
+  /**
    * テクスチャファイルのキーが存在するかどうかを確認する
    * @return true キーが存在する
    * @return false キーが存在しない
@@ -822,6 +850,7 @@ export class CubismModelSettingJson extends ICubismModelSetting {
   protected readonly expressions = 'Expressions';
   protected readonly motions = 'Motions';
   protected readonly displayInfo = 'DisplayInfo';
+  protected readonly modelActions = 'ModelActions';
 
   protected readonly userData = 'UserData';
   protected readonly name = 'Name';
